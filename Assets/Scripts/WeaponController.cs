@@ -26,11 +26,18 @@ public class WeaponController : MonoBehaviour
     private const float DefaultLaserWidth = 0.45f;
     private const float DefaultLaserDuration = 0.9f;
     private const float DefaultDamageMultiplier = 4f;
+    private const float DefaultBrimstoneMouthForwardOffset = 0.22f;
+    private const float DefaultBrimstoneMouthVerticalOffset = 0f;
+    private const float DefaultBrimstoneStartShakeDuration = 0.08f;
+    private const float DefaultBrimstoneStartShakeStrength = 0.18f;
+    private const float DefaultBrimstoneSustainShakeDuration = 0.02f;
+    private const float DefaultBrimstoneSustainShakeStrength = 0.025f;
     private const float DefaultProjectileHomingTurnSpeed = 240f;
     private const float DefaultProjectileHomingRetargetInterval = 0.2f;
     private const float DefaultHomingCurveStrength = 1.2f;
     private const int DefaultHomingCurveSamplesPerSegment = 10;
     private const int MaximumHomingCurveSamplesPerSegment = 24;
+    private const float HorizontalFacingThreshold = 0.01f;
 
     [Header("Attack")]
     [Tooltip("일반 공격의 발사 간격이다. 혈사포 옵션이 켜지면 충전 시간으로 사용한다.")]
@@ -42,6 +49,10 @@ public class WeaponController : MonoBehaviour
 
     [SerializeField]
     private Transform firePoint;
+
+    [SerializeField]
+    [Tooltip("왼쪽을 보는 원본 스프라이트 기준의 입 발사 위치다.")]
+    private Vector2 leftFacingFirePointOffset = new Vector2(-0.55f, 0.2f);
 
     [SerializeField, Range(MinimumAttackCount, MaximumAttackCount)]
     [Tooltip("한 번 공격할 때 생성하는 공격 수다. 2는 평행, 3 이상은 부채꼴로 발사한다.")]
@@ -117,6 +128,14 @@ public class WeaponController : MonoBehaviour
     private float splitProjectileLifetime = DefaultSplitProjectileLifetime;
 
     [Header("Brimstone Laser")]
+    [SerializeField, Min(0f)]
+    [Tooltip("혈사포만 입 바깥쪽에서 시작해 보이도록 발사 방향으로 더 밀어내는 거리다.")]
+    private float brimstoneMouthForwardOffset = DefaultBrimstoneMouthForwardOffset;
+
+    [SerializeField]
+    [Tooltip("혈사포만 시작 위치를 월드 Y축 기준으로 위아래 보정하는 값이다.")]
+    private float brimstoneMouthVerticalOffset = DefaultBrimstoneMouthVerticalOffset;
+
     [SerializeField, Min(0.1f)]
     private float laserLength = DefaultLaserLength;
 
@@ -151,11 +170,27 @@ public class WeaponController : MonoBehaviour
     [SerializeField]
     private CameraFollow cameraFollow;
 
-    [SerializeField, Min(0f)]
-    private float screenShakeDuration = 0.08f;
+    [SerializeField]
+    private SpriteRenderer playerSpriteRenderer;
+
+    [SerializeField]
+    private PlayerController playerController;
 
     [SerializeField, Min(0f)]
-    private float screenShakeStrength = 0.08f;
+    [Tooltip("혈사포가 발사되는 순간 크게 흔들리는 시간이다.")]
+    private float screenShakeDuration = DefaultBrimstoneStartShakeDuration;
+
+    [SerializeField, Min(0f)]
+    [Tooltip("혈사포가 발사되는 순간 크게 흔들리는 세기다.")]
+    private float screenShakeStrength = DefaultBrimstoneStartShakeStrength;
+
+    [SerializeField, Min(0f)]
+    [Tooltip("혈사포 지속시간 동안 자잘한 흔들림을 유지하는 짧은 갱신 시간이다.")]
+    private float brimstoneSustainShakeDuration = DefaultBrimstoneSustainShakeDuration;
+
+    [SerializeField, Min(0f)]
+    [Tooltip("혈사포 지속시간 동안 유지되는 자잘한 흔들림 세기다.")]
+    private float brimstoneSustainShakeStrength = DefaultBrimstoneSustainShakeStrength;
 
     [Header("State References")]
     [SerializeField]
@@ -169,7 +204,10 @@ public class WeaponController : MonoBehaviour
     private GameManager gameManager;
 
     private float chargeElapsed;
+    private float brimstoneVisualTimer;
+    private float brimstoneSustainShakeTimer;
     private bool warnedMissingProjectilePrefab;
+    private int lastFacingSign = -1;
 
     public float AttackInterval
     {
@@ -254,10 +292,12 @@ public class WeaponController : MonoBehaviour
 
     public float LaserDamage => projectileDamage * laserDamageMultiplier;
     public bool CanAttack => !IsAttackBlocked();
+    public bool IsBrimstoneFiring => brimstoneVisualTimer > 0f;
 
     private void Awake()
     {
         ResolveOptionalReferences();
+        ApplyMouthFirePointPosition();
         chargeElapsed = startCharged ? ResolveActiveAttackInterval() : 0f;
     }
 
@@ -287,6 +327,8 @@ public class WeaponController : MonoBehaviour
         laserWidth = Mathf.Max(0.01f, SanitizeNonNegative(laserWidth, DefaultLaserWidth));
         laserDuration = Mathf.Max(0.01f, SanitizeNonNegative(laserDuration, DefaultLaserDuration));
         laserDamageMultiplier = SanitizeNonNegative(laserDamageMultiplier, DefaultDamageMultiplier);
+        brimstoneMouthForwardOffset = SanitizeNonNegative(brimstoneMouthForwardOffset, DefaultBrimstoneMouthForwardOffset);
+        brimstoneMouthVerticalOffset = IsFinite(brimstoneMouthVerticalOffset) ? brimstoneMouthVerticalOffset : DefaultBrimstoneMouthVerticalOffset;
         homingTargetLimit = Mathf.Max(1, homingTargetLimit);
         homingRadius = SanitizeNonNegative(homingRadius, 14f);
         homingCurveStrength = SanitizeNonNegative(homingCurveStrength, DefaultHomingCurveStrength);
@@ -294,12 +336,18 @@ public class WeaponController : MonoBehaviour
             homingCurveSamplesPerSegment,
             2,
             MaximumHomingCurveSamplesPerSegment);
-        screenShakeDuration = SanitizeNonNegative(screenShakeDuration, 0.08f);
-        screenShakeStrength = SanitizeNonNegative(screenShakeStrength, 0.08f);
+        screenShakeDuration = SanitizeNonNegative(screenShakeDuration, DefaultBrimstoneStartShakeDuration);
+        screenShakeStrength = SanitizeNonNegative(screenShakeStrength, DefaultBrimstoneStartShakeStrength);
+        brimstoneSustainShakeDuration = SanitizeNonNegative(brimstoneSustainShakeDuration, DefaultBrimstoneSustainShakeDuration);
+        brimstoneSustainShakeStrength = SanitizeNonNegative(brimstoneSustainShakeStrength, DefaultBrimstoneSustainShakeStrength);
     }
 
     private void Update()
     {
+        UpdateFacingFromPlayerState();
+        ApplyMouthFirePointPosition();
+        TickBrimstoneVisualTimer();
+
         if (IsAttackBlocked())
         {
             return;
@@ -344,6 +392,50 @@ public class WeaponController : MonoBehaviour
         {
             cameraFollow = FindAnyObjectByType<CameraFollow>();
         }
+
+        if (playerSpriteRenderer == null)
+        {
+            TryGetComponent(out playerSpriteRenderer);
+        }
+
+        if (playerController == null)
+        {
+            TryGetComponent(out playerController);
+        }
+    }
+
+    private void UpdateFacingFromPlayerState()
+    {
+        if (playerController != null && playerController.MovementInput.x < -HorizontalFacingThreshold)
+        {
+            lastFacingSign = -1;
+        }
+        else if (playerController != null && playerController.MovementInput.x > HorizontalFacingThreshold)
+        {
+            lastFacingSign = 1;
+        }
+        else if (playerSpriteRenderer != null)
+        {
+            lastFacingSign = playerSpriteRenderer.flipX ? 1 : -1;
+        }
+    }
+
+    private void ApplyMouthFirePointPosition()
+    {
+        if (firePoint == null)
+        {
+            return;
+        }
+
+        Vector2 facingOffset = leftFacingFirePointOffset;
+
+        if (lastFacingSign > 0)
+        {
+            facingOffset.x = -facingOffset.x;
+        }
+
+        // 캐릭터 스프라이트 좌우 반전과 같은 기준으로 입 발사 위치도 좌우 반전한다.
+        firePoint.localPosition = new Vector3(facingOffset.x, facingOffset.y, firePoint.localPosition.z);
     }
 
     private void TickCharge()
@@ -367,6 +459,22 @@ public class WeaponController : MonoBehaviour
     private void RestartCharge()
     {
         chargeElapsed = 0f;
+    }
+
+    private void TickBrimstoneVisualTimer()
+    {
+        if (brimstoneVisualTimer <= 0f)
+        {
+            return;
+        }
+
+        brimstoneVisualTimer = Mathf.Max(0f, brimstoneVisualTimer - Time.deltaTime);
+        brimstoneSustainShakeTimer = Mathf.Max(0f, brimstoneSustainShakeTimer - Time.deltaTime);
+
+        if (brimstoneSustainShakeTimer > 0f)
+        {
+            TriggerBrimstoneSustainFeedback();
+        }
     }
 
     private bool TryGetCurrentTarget(out Transform target, out Health targetHealth)
@@ -400,7 +508,8 @@ public class WeaponController : MonoBehaviour
 
             if (useBrimstoneLaser)
             {
-                FireBrimstoneLaser(origin, shotOrigin - origin.position, shotDirection, targetHealth);
+                Vector3 brimstoneOriginOffset = ResolveBrimstoneOriginOffset(origin.position, shotOrigin, shotDirection);
+                FireBrimstoneLaser(origin, brimstoneOriginOffset, shotDirection, targetHealth);
             }
             else
             {
@@ -408,7 +517,11 @@ public class WeaponController : MonoBehaviour
             }
         }
 
-        TriggerFeedback();
+        if (useBrimstoneLaser)
+        {
+            TriggerBrimstoneStartFeedback();
+        }
+
         return true;
     }
 
@@ -450,6 +563,8 @@ public class WeaponController : MonoBehaviour
     {
         GameObject laserObject = new GameObject("JIN_BrimstoneLaser");
         JIN_BrimstoneLaser laser = laserObject.AddComponent<JIN_BrimstoneLaser>();
+        brimstoneVisualTimer = Mathf.Max(brimstoneVisualTimer, laserDuration);
+        brimstoneSustainShakeTimer = Mathf.Max(brimstoneSustainShakeTimer, laserDuration * 0.5f);
 
         // 혈사포 판정과 연출은 별도 컴포넌트로 넘겨 이후 시너지 확장을 분리한다.
         laser.Initialize(new JIN_BrimstoneLaser.Configuration
@@ -519,6 +634,14 @@ public class WeaponController : MonoBehaviour
         return originPosition + (Vector3)(perpendicular * doubleShotSpacing * offset);
     }
 
+    private Vector3 ResolveBrimstoneOriginOffset(Vector3 originPosition, Vector3 shotOrigin, Vector2 shotDirection)
+    {
+        // 일반 공격 위치는 유지하고, 혈사포 연출만 입 바깥쪽과 세로 위치로 따로 보정한다.
+        Vector3 forwardOffset = shotDirection.normalized * brimstoneMouthForwardOffset;
+        Vector3 verticalOffset = Vector3.up * brimstoneMouthVerticalOffset;
+        return shotOrigin - originPosition + forwardOffset + verticalOffset;
+    }
+
     private static Vector2 RotateDirection(Vector2 direction, float angleDegrees)
     {
         float radians = angleDegrees * Mathf.Deg2Rad;
@@ -530,11 +653,20 @@ public class WeaponController : MonoBehaviour
             direction.x * sin + direction.y * cos).normalized;
     }
 
-    private void TriggerFeedback()
+    private void TriggerBrimstoneStartFeedback()
     {
         if (cameraFollow != null)
         {
             cameraFollow.Shake(screenShakeDuration, screenShakeStrength);
+        }
+    }
+
+    private void TriggerBrimstoneSustainFeedback()
+    {
+        if (cameraFollow != null)
+        {
+            // 레이저가 유지되는 동안 짧고 약한 흔들림을 계속 보충한다.
+            cameraFollow.Shake(brimstoneSustainShakeDuration, brimstoneSustainShakeStrength);
         }
     }
 

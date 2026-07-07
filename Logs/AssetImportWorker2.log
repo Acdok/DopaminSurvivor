@@ -1,0 +1,488 @@
+[Licensing::Module] Trying to connect to existing licensing client channel...
+Built from '6000.4/staging' branch; Version is '6000.4.10f1 (feeafc12a938) revision 16706300'; Using compiler version '194234433'; Build Type 'Release'
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-Nipa" at "2026-07-07T01:17:46.8114535Z"
+OS: 'Windows 11  (10.0.26200) Professional' Language: 'ko' Physical Memory: 65309 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
+System  architecture: x64
+Process architecture: x64
+Date: 2026-07-07T01:17:46Z
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity 6000.4.10f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker2
+-projectPath
+D:/unity/DopaminSurvivor
+-logFile
+Logs/AssetImportWorker2.log
+-srvPort
+65253
+-licensingIpc
+LicenseClient-Nipa
+-force-d3d12
+-job-worker-count
+11
+-background-job-worker-count
+8
+-gc-helper-count
+1
+-name
+AssetImport
+Successfully changed project path to: D:/unity/DopaminSurvivor
+D:/unity/DopaminSurvivor
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gfx=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+Player connection [9040]  Target information:
+
+Player connection [9040]  * "[IP] 172.30.1.94 [Port] 0 [Flags] 2 [Guid] 2733070618 [EditorId] 2733070618 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-DLCP543) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [9040] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [9040] Host joined alternative multi-casting on [225.0.0.222:34997]...
+JobSystem: Creating JobQueue using job-worker-count value 11
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+Library Redirect Path: Library/
+[Physics::Module] Selected backend.
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Initialize engine version: 6000.4.10f1 (feeafc12a938)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity 6000.4.10f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path D:/unity/DopaminSurvivor/Assets
+Forcing GfxDevice: Direct3D 12
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+d3d12: failed to query info queue interface (0x80004002).
+Direct3D:
+    Version:         Direct3D 12 [level 12.2]
+    Renderer:        NVIDIA GeForce RTX 3080 Ti (ID=0x2208)
+    Vendor:          NVIDIA
+    VRAM:            12086 MB
+    App VRAM Budget: 11318 MB
+    Driver:          32.0.15.9579
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity 6000.4.10f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity 6000.4.10f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity 6000.4.10f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56740
+CodeReloadManager initialized
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity 6000.4.10f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.000826 seconds.
+Native extension for WindowsStandalone target not found
+Package Manager log level set to [2]
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.271 seconds
+Domain Reload Profiling: 589ms
+	BeginReloadAssembly (89ms)
+	RebuildCommonClasses (26ms)
+	RebuildNativeTypeToScriptingClass (9ms)
+	initialDomainReloadingComplete (42ms)
+	LoadAllAssembliesAndSetupDomain (150ms)
+		LoadAssemblies (87ms)
+		AnalyzeDomain (144ms)
+			TypeCache.Refresh (142ms)
+				TypeCache.ScanAssembly (132ms)
+	FinalizeReload (273ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (34ms)
+			BeforeProcessingInitializeOnLoad (59ms)
+			ProcessInitializeOnLoadAttributes (78ms)
+			ProcessInitializeOnLoadMethodAttributes (57ms)
+========================================================================
+Worker process is ready to serve import requests
+Import Worker Mode flag is 0x00
+Begin MonoManager ReloadAssembly
+[Licensing::Module] Licensing is not yet initialized.
+[Licensing::Client] Error: HandshakeResponse reported an error:
+	ResponseCode: 505
+	ResponseStatus: Unsupported protocol version '1.18.1'.
+[Licensing::Module] Error: Failed to handshake to channel: "LicenseClient-Nipa"
+[Licensing::IpcConnector] LicenseClient-Nipa channel disconnected successfully.
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-Nipa-6000.4.10" at "2026-07-07T01:17:48.2492454Z"
+[Licensing::Client] Code 10 while verifying Licensing Client signature (process Id: 12012, path: "C:/Program Files/Unity 6000.4.10f1/Editor/Data/Resources/Licensing/Client/Unity.Licensing.Client.exe")
+[Licensing::Module] LicensingClient has failed validation; ignoring
+[Licensing::Client] Handshaking with LicensingClient:
+  Version:                 1.18.1+9fbee8e
+  Session Id:              f3e9ad03d3ea467f84ed143235eba0be
+  Correlation Id:          4ccb7b8f277cb5f5ef3f28dab2a03a2d
+  External correlation Id: 5701317267020056372
+  Machine Id:              sq84sC9BvHaJdGs/1CMEhtaRlY8=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-Nipa-6000.4.10" (connect: 0.00s, validation: 0.00s, handshake: 0.01s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-Nipa-6000.4.10-notifications" at "2026-07-07T01:17:48.2573143Z"
+[Licensing::Module] Licensing Background thread has ended after 1.45s
+[Licensing::Module] Licensing is initialized (took 0.07s).
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: 14569765117128-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+Assembly Assembly-CSharp-Editor-firstpass.dll at Library/ScriptAssemblies/Assembly-CSharp-Editor-firstpass.dll not valid. Loading of assembly skipped.
+Assembly Assembly-CSharp-firstpass.dll at Library/ScriptAssemblies/Assembly-CSharp-firstpass.dll not valid. Loading of assembly skipped.
+Assembly DocCodeExamples.dll at Library/ScriptAssemblies/DocCodeExamples.dll not valid. Loading of assembly skipped.
+Assembly TestNewCustomAssembly.dll at Library/ScriptAssemblies/TestNewCustomAssembly.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.BurstCompatibilityGen.dll at Library/ScriptAssemblies/Unity.Collections.BurstCompatibilityGen.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.DocCodeSamples.dll at Library/ScriptAssemblies/Unity.Collections.DocCodeSamples.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.PerformanceTests.dll at Library/ScriptAssemblies/Unity.Collections.PerformanceTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.Tests.dll at Library/ScriptAssemblies/Unity.Collections.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Collections.Tests.Playmode.dll at Library/ScriptAssemblies/Unity.Collections.Tests.Playmode.dll not valid. Loading of assembly skipped.
+Assembly Unity.InputSystem.IntegrationTests.dll at Library/ScriptAssemblies/Unity.InputSystem.IntegrationTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Mathematics.Tests.dll at Library/ScriptAssemblies/Unity.Mathematics.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Multiplayer.Center.Editor.Tests.dll at Library/ScriptAssemblies/Unity.Multiplayer.Center.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Multiplayer.Center.Tests.dll at Library/ScriptAssemblies/Unity.Multiplayer.Center.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Nuget.Mono-Cecil.dll at Library/ScriptAssemblies/Unity.Nuget.Mono-Cecil.dll not valid. Loading of assembly skipped.
+Assembly Unity.PathTracing.Editor.Tests.dll at Library/ScriptAssemblies/Unity.PathTracing.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.PathTracing.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.PathTracing.Runtime.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.Core.Editor.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.Core.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.Universal.Config.Editor.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Config.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.Universal.Editor.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.RenderPipelines.Universal.Runtime.Tests.dll at Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Runtime.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.Searcher.EditorTests.dll at Library/ScriptAssemblies/Unity.Searcher.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly Unity.ShaderGraph.Editor.Tests.dll at Library/ScriptAssemblies/Unity.ShaderGraph.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.TextMeshPro.Editor.Tests.dll at Library/ScriptAssemblies/Unity.TextMeshPro.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.TextMeshPro.Tests.dll at Library/ScriptAssemblies/Unity.TextMeshPro.Tests.dll not valid. Loading of assembly skipped.
+Assembly Unity.UnifiedRayTracing.Editor.Tests.dll at Library/ScriptAssemblies/Unity.UnifiedRayTracing.Editor.Tests.dll not valid. Loading of assembly skipped.
+Assembly UnityEditor.UI.Common.Tests.dll at Library/ScriptAssemblies/UnityEditor.UI.Common.Tests.dll not valid. Loading of assembly skipped.
+Assembly UnityEditor.UI.EditorTests.dll at Library/ScriptAssemblies/UnityEditor.UI.EditorTests.dll not valid. Loading of assembly skipped.
+Assembly UnityEngine.UI.Tests.dll at Library/ScriptAssemblies/UnityEngine.UI.Tests.dll not valid. Loading of assembly skipped.
+Native extension for WindowsStandalone target not found
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.485 seconds
+Domain Reload Profiling: 1078ms
+	BeginReloadAssembly (188ms)
+		DisableScriptedObjects (4ms)
+		CreateAndSetChildDomain (21ms)
+	RebuildCommonClasses (25ms)
+	RebuildNativeTypeToScriptingClass (9ms)
+	initialDomainReloadingComplete (40ms)
+	LoadAllAssembliesAndSetupDomain (330ms)
+		LoadAssemblies (219ms)
+		AnalyzeDomain (174ms)
+			TypeCache.Refresh (126ms)
+				TypeCache.ScanAssembly (115ms)
+			BuildScriptInfoCaches (41ms)
+			ResolveRequiredComponents (7ms)
+	FinalizeReload (485ms)
+		SetupLoadedEditorAssemblies (0ms)
+			BeforeProcessingInitializeOnLoad (91ms)
+			ProcessInitializeOnLoadAttributes (200ms)
+			ProcessInitializeOnLoadMethodAttributes (45ms)
+		AwakeInstancesAfterBackupRestoration (4ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.17 seconds
+Unloading 24 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 6562 unused Assets / (5.4 MB). Loaded Objects now: 7370.
+Memory consumption went from 157.5 MB to 152.1 MB.
+Total: 5.852900 ms (FindLiveObjects: 0.490200 ms CreateObjectMapping: 0.449500 ms MarkObjects: 3.280800 ms  DeleteObjects: 1.630700 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 2233993.307175 seconds.
+  path: Assets/Checklists/10_EnemySpawner_Checklist.md
+  importAddress: Guid(dea5594d99be4052a27b1fe721a75529) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Checklists/10_EnemySpawner_Checklist.md using Guid(dea5594d99be4052a27b1fe721a75529) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'aaa228f3d7c3c90d0ed6308f78a0418c') in 0.0778633 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=4522ef400744bc1f3d7bbcc4ee48c932 DependenciesID=ebe6561f1d65a6c2608dbce6dad1c60b StaticDependenciesID=c97f9bb3b191d1fae455e544633fb017 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 12.139023 seconds.
+  path: Assets
+  importAddress: Guid(00000000000000001000000000000000) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets using Guid(00000000000000001000000000000000) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'ba3d99d3e6455b7d738cc313a5658c64') in 0.0006154 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=a7ba422695a8aa3da15a65ed13cf7f8c DependenciesID=aacbd2d46c4ccb757ffc405dc59c5e9b StaticDependenciesID=09d262387b384c67fbae9f36a9075c34 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 12.044992 seconds.
+  path: Assets/Image
+  importAddress: Guid(816696f7d5da29f4185a825751b23386) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Image using Guid(816696f7d5da29f4185a825751b23386) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '7f835d52709e7a84fae6469dd4e2846a') in 0.0003566 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=fc644edf5b0a4674463e6847e2083a57 DependenciesID=277f5c6a3a37de59c457bbfe88016517 StaticDependenciesID=6df39d7d2d3f0add227c7829a695e6f6 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.013434 seconds.
+  path: Assets/Image
+  importAddress: Guid(816696f7d5da29f4185a825751b23386) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Image using Guid(816696f7d5da29f4185a825751b23386) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'e86450ecde0bd1772faf4ccce2eb075d') in 0.1031181 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=d38d00bef824829adea7b7c6cd02b318 DependenciesID=918b3da81efa6ec265d4f6d21f1f5c3f StaticDependenciesID=a850da5bd32f5f602aedf65c54a1267c 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 22.873357 seconds.
+  path: Assets/Image/ab64a229-1b1b-462f-9747-0886d3a8dbd8.png
+  importAddress: Guid(5ffef0f0e54be9e42ad15999a04db831) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Image/ab64a229-1b1b-462f-9747-0886d3a8dbd8.png using Guid(5ffef0f0e54be9e42ad15999a04db831) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '64d7160f9a874a563e2e97c7943ec611') in 0.4360496 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=2e087c8efd5c841bd6719a3c9d08f4ab DependenciesID=374e46564266c3dbd68007b68ff4e838 StaticDependenciesID=7805b26c188c48682a569195d51c284d 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.613361 seconds.
+  path: Assets/Image/ab64a229-1b1b-462f-9747-0886d3a8dbd8.png
+  importAddress: Guid(5ffef0f0e54be9e42ad15999a04db831) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Image/ab64a229-1b1b-462f-9747-0886d3a8dbd8.png using Guid(5ffef0f0e54be9e42ad15999a04db831) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'eb663ddd4b861ddf3b95b7eb892bb8c7') in 0.0374081 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=81747e5b6ce78b7cfefc0668e79b4a56 DependenciesID=51a14ed233bfea10f8965546061b2966 StaticDependenciesID=0860853520b1a23b6a109818d3bc6eb3 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 20.742727 seconds.
+  path: Assets/Image/4a1662b3-8903-4fcc-9401-e47da6d49ec5.png
+  importAddress: Guid(db90db95ecb0e1f4cac94298f850079c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Image/4a1662b3-8903-4fcc-9401-e47da6d49ec5.png using Guid(db90db95ecb0e1f4cac94298f850079c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '520a28626adf4752e132627d8208c120') in 0.0310953 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=28a62ea5a4edcc4f4a4029a022ea3d57 DependenciesID=0c073980b9d49fdc27f5354092741989 StaticDependenciesID=f71fe81a462b10a80c242da489f3d168 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.938106 seconds.
+  path: Assets/Image/4a1662b3-8903-4fcc-9401-e47da6d49ec5.png
+  importAddress: Guid(db90db95ecb0e1f4cac94298f850079c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Image/4a1662b3-8903-4fcc-9401-e47da6d49ec5.png using Guid(db90db95ecb0e1f4cac94298f850079c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '9ffaed84e6fab0705afaf7c1d8e57ffa') in 0.0117776 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=3cbe14bef5d46633c64ecfbd3a612759 DependenciesID=cc1dfdc78bc1354390dea28c7d9db508 StaticDependenciesID=64f56f102147bb2735b7aa5712a42320 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Import Request.
+  Time since last request: 379.393177 seconds.
+  path: Assets/Image/Sliced/character_05.png
+  importAddress: Guid(f953137a3dea4103b7f7cde43b5415ee) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Image/Sliced/character_05.png using Guid(f953137a3dea4103b7f7cde43b5415ee) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '6bb7b9d73571f06c7d0cae8e0d332833') in 0.0302029 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=06007aa4403ebabe39c388e454d6863e DependenciesID=da03263244ce49efa8d432d00af02e0b StaticDependenciesID=754c8f853db957269b354637d195fee7 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Image/Sliced/character_10.png
+  importAddress: Guid(50686502c2f2425d9713fb0d835e32a4) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Image/Sliced/character_10.png using Guid(50686502c2f2425d9713fb0d835e32a4) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'dbe106ab5431933bcf18794e24ba3776') in 0.0119578 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=a0c737c9f4ea83fbb53e7c47b01b6b93 DependenciesID=17f013087d12eb3fe2b831c6bee064e7 StaticDependenciesID=5b7372e8857a1ec5e261e750f032696b 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Image/Sliced/character_23.png
+  importAddress: Guid(f3160b68d24043a8a5ccf8d4a454fdaf) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Image/Sliced/character_23.png using Guid(f3160b68d24043a8a5ccf8d4a454fdaf) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '484be1ebdd211e234ba58b6e476db040') in 0.0165349 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=260e7a25a8d8c9b386ba7a9e69c43530 DependenciesID=5eb89da6632369951188e1d8aeb86d2a StaticDependenciesID=d4fb3226197abdf4608258c41129b0f1 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Image/Sliced/character_01.png
+  importAddress: Guid(8f6c6fcc652e491aaf24a60d1c5d2652) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Image/Sliced/character_01.png using Guid(8f6c6fcc652e491aaf24a60d1c5d2652) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'a32ae7723f819ff6ae468d4ac48e6db0') in 0.014576 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=52b8d4fbf7e4f9f97e3d32de3b303c34 DependenciesID=d3b43071d8d89761c8582100335ea3bf StaticDependenciesID=189fd91ae3b1a7372013d3b6b0ca01a1 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Image/Sliced/character_20.png
+  importAddress: Guid(1fcd2b9326d94af7ac2cfe5d3f1e853d) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Image/Sliced/character_20.png using Guid(1fcd2b9326d94af7ac2cfe5d3f1e853d) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '21fe86ce77f6d531d4131db510a22a46') in 0.0180898 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=9654d0ded04a40e2331fbf8f19402359 DependenciesID=f27eea9a7ba2fc4287368f892e28b881 StaticDependenciesID=90691667c356b706336899697e390e75 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Image/Sliced/character_12.png
+  importAddress: Guid(673aadc80b454aa2bc7241d6c3e2a593) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Image/Sliced/character_12.png using Guid(673aadc80b454aa2bc7241d6c3e2a593) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '5511aaabd149968cb1aa487b7f136771') in 0.0125012 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=c337a7b76df753fa08472aef539dbb2c DependenciesID=cdf33f592df28e5b45e36fc2766ea10c StaticDependenciesID=6699fb83acf98b69d908964f6b13b5a0 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000046 seconds.
+  path: Assets/Image/Sliced/character_17.png
+  importAddress: Guid(42ce8888fbcd48ea87ae52ee228cbcb7) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Image/Sliced/character_17.png using Guid(42ce8888fbcd48ea87ae52ee228cbcb7) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '38820784f43da4723139819f3b67dcc0') in 0.0133118 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=6ad256f27521dd3a50301662ec621260 DependenciesID=fe9e524c0384c0e27598bf71abae63d8 StaticDependenciesID=bc9bc345955660052d045c52699d0e97 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/Image/Sliced/character_22.png
+  importAddress: Guid(a2b4290c427642f999cb5b4c5522d250) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Image/Sliced/character_22.png using Guid(a2b4290c427642f999cb5b4c5522d250) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'f1f66812e167f85e8020a8ce8d1352d6') in 0.0146025 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=c55b9ca811991c1893013197b52ef92c DependenciesID=966b4d2394d5f8a26ed260dfe125efda StaticDependenciesID=4511024018907f3af30c5e35664e8ce4 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Image/Sliced/character_03.png
+  importAddress: Guid(e1e0a1d1c44141a2aa80ed99616cacc4) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Image/Sliced/character_03.png using Guid(e1e0a1d1c44141a2aa80ed99616cacc4) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'c373b031fccc465bd36e47d9bc4d483a') in 0.0136784 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=3deaabe7566510f6fc30a617eb53d17c DependenciesID=a49a425f45981a200b9514d7aee0990b StaticDependenciesID=5b51076d4b75fc80c42004787c377b1d 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Image/Sliced/character_08.png
+  importAddress: Guid(f0a6767f2d6549bcaf50ee823ee8bff2) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Image/Sliced/character_08.png using Guid(f0a6767f2d6549bcaf50ee823ee8bff2) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '9b2d25f32273a3cf4e46148cbc1a41f4') in 0.0119819 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=0d3b1a8060a9da3e9a90133aa7eb7498 DependenciesID=a076a4ea68b68d3b9a8ebfa22c9ea1a8 StaticDependenciesID=85c9be372b5382054de4302774bfcb1c 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Image/Sliced/character_19.png
+  importAddress: Guid(1c4724e3acff4c6a9956a56d5b145a3c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Image/Sliced/character_19.png using Guid(1c4724e3acff4c6a9956a56d5b145a3c) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: 'd42e4442a4cad0498ea1014569d1fd46') in 0.0148592 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=f304bef4686798db100ac6ae49b8c424 DependenciesID=233d3847e390ffe6757af8ea469406a2 StaticDependenciesID=1b6179b485473cda9f70e7aa3dac9c9f 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Image/Sliced/character_18.png
+  importAddress: Guid(d028928da40f4dcca6c44068eec8ad9e) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d)
+Start importing Assets/Image/Sliced/character_18.png using Guid(d028928da40f4dcca6c44068eec8ad9e) Importer(2089858483,b0f066a214c2f5e87bad3c948f4d605d) (ScriptedImporter) -> (Import Result ID: '3887f0d54acb116f9a8cfd7bcd5110fc') in 0.0121886 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=4956ed38ee862cc2ce88432dce508a9f DependenciesID=e1fe2c929bd8cb08f1402db4dd2c0d4a StaticDependenciesID=46ad4416fd74e2b7ff83c468ade85e5b 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.348958 seconds.
+  path: Assets/Image/Sliced
+  importAddress: Guid(ab573ca8ba0f48f2a4b47f1288c8d9ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Image/Sliced using Guid(ab573ca8ba0f48f2a4b47f1288c8d9ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'c547226d5288bbe50b5f81d2cf45efef') in 0.0004683 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=24ae6ca4d3ac64e8e6d9fc2a668d48e2 DependenciesID=77d4bc73286dff200b7536a1edd907ce StaticDependenciesID=1287b35ed3c7a4e56855f0d38c44e09c 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.013683 seconds.
+  path: Assets/Image/Sliced/character_01.png
+  importAddress: Guid(8f6c6fcc652e491aaf24a60d1c5d2652) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Image/Sliced/character_01.png using Guid(8f6c6fcc652e491aaf24a60d1c5d2652) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '2041a5a84a57d1ae1b722240d9314563') in 0.0452516 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=c4ffd4b690f2a85659bf4c24fe867dc5 DependenciesID=f042eb9bdf821aafd04232cedb7a752e StaticDependenciesID=1c0350732dce6949317d684b47b711e0 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Image/Sliced/character_24.png
+  importAddress: Guid(29ab746a30394fa8bb3b4fad2a6f9651) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Image/Sliced/character_24.png using Guid(29ab746a30394fa8bb3b4fad2a6f9651) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '2a0f07cbd7f9905a9685844d2d00dbac') in 0.0183948 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=e11f3969bfd91c4c8b303a6f8fc8725d DependenciesID=12d9d9372c913700e4893dedd7722d3b StaticDependenciesID=46c0e28b54e5b89bb17709b0be0ca027 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/Image/Sliced/character_05.png
+  importAddress: Guid(f953137a3dea4103b7f7cde43b5415ee) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Image/Sliced/character_05.png using Guid(f953137a3dea4103b7f7cde43b5415ee) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '1b88624e1cfee7fba873b7dcfb7f74d9') in 0.0171866 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=23179bc1ca4b68a229d23febdd553ed1 DependenciesID=6d317eb11fdbe85f57db799e404ac17e StaticDependenciesID=4234e9254f10d24c2cd9a9773e53fb38 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Image/Sliced/character_18.png
+  importAddress: Guid(d028928da40f4dcca6c44068eec8ad9e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Image/Sliced/character_18.png using Guid(d028928da40f4dcca6c44068eec8ad9e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '0d95ef8bb82d38f5b6c59e64a9cd84e3') in 0.0192812 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=d01743857485da6c7f4d56e6de4edab8 DependenciesID=cc3498797f00ab344a476df0a0f27e19 StaticDependenciesID=95b88cf5106f38ed53201159fdb36756 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/Image/Sliced/character_23.png
+  importAddress: Guid(f3160b68d24043a8a5ccf8d4a454fdaf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Image/Sliced/character_23.png using Guid(f3160b68d24043a8a5ccf8d4a454fdaf) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'c2fc56049594d674d31e292df08fe7c5') in 0.0172925 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=ecca9baf2403a024a2e42f113929f19c DependenciesID=056e695d843e0e65be336ab79992ba9d StaticDependenciesID=01dd65e00f56bd42fe469efa2b1fdf0e 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Image/Sliced/character_12.png
+  importAddress: Guid(673aadc80b454aa2bc7241d6c3e2a593) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Image/Sliced/character_12.png using Guid(673aadc80b454aa2bc7241d6c3e2a593) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '4b6f18900ea151bfe61c65974cce9a3b') in 0.0149263 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=95862e385aa48a1b4429d4da18c31891 DependenciesID=16089e7c58d46dc1daac4af6b794a180 StaticDependenciesID=37c42f4ea2cd03930a900309732e1904 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Image/Sliced/character_22.png
+  importAddress: Guid(a2b4290c427642f999cb5b4c5522d250) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Image/Sliced/character_22.png using Guid(a2b4290c427642f999cb5b4c5522d250) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'f1f1b3c0406390f1d1952ddf321a4baf') in 0.0177763 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=e2aa0dfaf0a57f3f1516c964792328f4 DependenciesID=36bea725fc6c0b01c144d9445a339a57 StaticDependenciesID=b83143cfb5f78c8dd7f92c57847f46a4 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Image/Sliced/character_20.png
+  importAddress: Guid(1fcd2b9326d94af7ac2cfe5d3f1e853d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Image/Sliced/character_20.png using Guid(1fcd2b9326d94af7ac2cfe5d3f1e853d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'f3dea43bf2db09304f616c3d7c794f70') in 0.0197693 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=8e33331c37c6def734003def9d1f8667 DependenciesID=329b0d6d35f1657afee6e66c65cf776d StaticDependenciesID=f66a08a81ffc4da42591723e948116a3 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/Image/Sliced/character_10.png
+  importAddress: Guid(50686502c2f2425d9713fb0d835e32a4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Image/Sliced/character_10.png using Guid(50686502c2f2425d9713fb0d835e32a4) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: '387ac91ba0869bc4840825d18f3b47ab') in 0.017675 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=5b792a7c955c07737bf3577876dec45b DependenciesID=3605676e6a85d6e35a4228afd529653c StaticDependenciesID=935fe3329df528fcf50a90bc55b3a765 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Image/Sliced/character_16.png
+  importAddress: Guid(56086c3ecda8484e8d40095fad80e316) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Image/Sliced/character_16.png using Guid(56086c3ecda8484e8d40095fad80e316) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'bd8adef520dc17fd5d2205a03ed8d000') in 0.0195252 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=56215d22cce0b2f775afa4969d26332a DependenciesID=934581d54a7001a9fc485020bb16f25b StaticDependenciesID=f2a110f82f1c6950af3ad7172571e6a8 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Image/Sliced/character_08.png
+  importAddress: Guid(f0a6767f2d6549bcaf50ee823ee8bff2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Image/Sliced/character_08.png using Guid(f0a6767f2d6549bcaf50ee823ee8bff2) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (Import Result ID: 'a30d472326b3cd8d5e7e5c92a262ae1e') in 0.0188564 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=7af84dcdb1432653296350663261b5af DependenciesID=aa2cc9c84be04830bf62f1c792d79638 StaticDependenciesID=45b578b4093f9460c345f85788794a5a 
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0

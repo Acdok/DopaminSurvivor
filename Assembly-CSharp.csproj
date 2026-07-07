@@ -49,6 +49,7 @@
     <Analyzer Include="C:\Program Files\Unity 6000.4.10f1\Editor\Data\Tools\BuildPipeline\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\JIN_InfiniteMapBackground.cs" />
     <Compile Include="Assets\Scripts\AutoTargeting.cs" />
     <Compile Include="Assets\Scripts\JIN_BossChestDropper.cs" />
     <Compile Include="Assets\Scripts\JIN_UIUtility.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="Assets\Scripts\ContactDamage.cs" />
     <Compile Include="Assets\Scripts\JIN_BrimstoneLaser.cs" />
     <Compile Include="Assets\Scripts\JIN_ItemEffectApplier.cs" />
+    <Compile Include="Assets\Scripts\JIN_PlayerAttackSpriteAnimator.cs" />
     <Compile Include="Assets\Scripts\JIN_PlayerExperience.cs" />
     <Compile Include="Assets\Scripts\JIN_GrowthUIController.cs" />
     <Compile Include="Assets\Scripts\JIN_GameplayBootstrap.cs" />

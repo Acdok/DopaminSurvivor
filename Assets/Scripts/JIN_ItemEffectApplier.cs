@@ -29,6 +29,28 @@ public class JIN_ItemEffectApplier : MonoBehaviour
     [SerializeField]
     private Health playerHealth;
 
+    [Header("Test Keyboard Toggles")]
+    [SerializeField]
+    [Tooltip("테스트용 숫자키 아이템 토글을 사용할지 여부다.")]
+    private bool useTestKeyboardToggles = true;
+
+    [SerializeField]
+    [Tooltip("혈사포 활성화 중 공격속도를 50% 낮추기 위해 공격 간격에 곱하는 값이다.")]
+    private float brimstoneAttackIntervalMultiplier = 2f;
+
+    private bool testDoubleShotEnabled;
+    private bool testTripleShotEnabled;
+    private bool testQuadShotEnabled;
+    private bool testSplitAttackEnabled;
+    private bool testHomingAttackEnabled;
+    private bool testBrimstoneEnabled;
+    private bool hasTestDoubleShotOverride;
+    private bool hasTestTripleShotOverride;
+    private bool hasTestQuadShotOverride;
+    private bool hasTestSplitAttackOverride;
+    private bool hasTestHomingAttackOverride;
+    private bool hasTestBrimstoneOverride;
+
     private bool hasBaseStats;
     private float baseAttackInterval;
     private float baseBrimstoneAttackInterval;
@@ -51,6 +73,11 @@ public class JIN_ItemEffectApplier : MonoBehaviour
     private void OnDisable()
     {
         Unsubscribe();
+    }
+
+    private void Update()
+    {
+        HandleTestKeyboardToggles();
     }
 
     public void Configure(
@@ -192,20 +219,26 @@ public class JIN_ItemEffectApplier : MonoBehaviour
         // 전투 수치는 원본 값을 기준으로 다시 계산해 중복 적용을 방지한다.
         if (weaponController != null)
         {
-            weaponController.AttackInterval = Mathf.Max(0.08f, baseAttackInterval / (1f + attackSpeedBonus));
-            weaponController.BrimstoneAttackInterval = Mathf.Max(0.08f, baseBrimstoneAttackInterval / (1f + attackSpeedBonus));
+            float attackInterval = Mathf.Max(0.08f, baseAttackInterval / (1f + attackSpeedBonus));
+            float brimstoneAttackInterval = Mathf.Max(0.08f, baseBrimstoneAttackInterval / (1f + attackSpeedBonus));
+
+            if (shouldUseBrimstoneLaser)
+            {
+                // 혈사포는 활성화된 동안만 공격 간격을 늘려 실제 공격속도를 50% 감소시킨다.
+                brimstoneAttackInterval *= Mathf.Max(1f, brimstoneAttackIntervalMultiplier);
+            }
+
+            weaponController.AttackInterval = attackInterval;
+            weaponController.BrimstoneAttackInterval = brimstoneAttackInterval;
             weaponController.ProjectileDamage = Mathf.Max(0f, baseProjectileDamage + damageBonus);
             weaponController.ProjectileSpeed = Mathf.Max(0f, baseProjectileSpeed + projectileSpeedBonus);
 
-            if (inventory != null)
-            {
-                // 혈사포 세트 유도와 범용 유도 아이템은 별도 플래그로 관리해 다른 공격 확장에도 재사용한다.
-                weaponController.UseBrimstoneLaser = shouldUseBrimstoneLaser;
-                weaponController.UseHomingAttack = shouldUseGenericHoming;
-                weaponController.UseSplitAttack = shouldUseSplitAttack;
-                weaponController.UseHomingLaser = shouldUseBrimstoneSetHoming;
-                weaponController.AttackCount = attackCount;
-            }
+            // 혈사포 세트 유도와 범용 유도 아이템은 별도 플래그로 관리해 다른 공격 확장에도 재사용한다.
+            weaponController.UseBrimstoneLaser = shouldUseBrimstoneLaser;
+            weaponController.UseHomingAttack = shouldUseGenericHoming;
+            weaponController.UseSplitAttack = shouldUseSplitAttack;
+            weaponController.UseHomingLaser = shouldUseBrimstoneSetHoming;
+            weaponController.AttackCount = attackCount;
         }
 
         if (playerController != null)
@@ -221,6 +254,58 @@ public class JIN_ItemEffectApplier : MonoBehaviour
         if (playerExperience != null)
         {
             playerExperience.ExperienceGainMultiplier = 1f + experienceGainBonus;
+        }
+    }
+
+    private void HandleTestKeyboardToggles()
+    {
+        if (!useTestKeyboardToggles)
+        {
+            return;
+        }
+
+        bool changed = false;
+
+        // 테스트용 숫자키 토글은 Old Input만 사용한다.
+        if (WasTestTogglePressed(KeyCode.Alpha1, KeyCode.Keypad1))
+        {
+            ToggleTestOverride(ref hasTestDoubleShotOverride, ref testDoubleShotEnabled, HasInventoryItem(DoubleShotItemId));
+            changed = true;
+        }
+
+        if (WasTestTogglePressed(KeyCode.Alpha2, KeyCode.Keypad2))
+        {
+            ToggleTestOverride(ref hasTestTripleShotOverride, ref testTripleShotEnabled, HasInventoryItem(TripleShotItemId));
+            changed = true;
+        }
+
+        if (WasTestTogglePressed(KeyCode.Alpha3, KeyCode.Keypad3))
+        {
+            ToggleTestOverride(ref hasTestQuadShotOverride, ref testQuadShotEnabled, HasInventoryItem(QuadShotItemId));
+            changed = true;
+        }
+
+        if (WasTestTogglePressed(KeyCode.Alpha4, KeyCode.Keypad4))
+        {
+            ToggleTestOverride(ref hasTestSplitAttackOverride, ref testSplitAttackEnabled, HasInventoryItem(SplitAttackItemId));
+            changed = true;
+        }
+
+        if (WasTestTogglePressed(KeyCode.Alpha5, KeyCode.Keypad5))
+        {
+            ToggleTestOverride(ref hasTestHomingAttackOverride, ref testHomingAttackEnabled, HasInventoryItem(GenericHomingItemId));
+            changed = true;
+        }
+
+        if (WasTestTogglePressed(KeyCode.Alpha6, KeyCode.Keypad6))
+        {
+            ToggleTestOverride(ref hasTestBrimstoneOverride, ref testBrimstoneEnabled, HasInventoryItem(BrimstoneItemId));
+            changed = true;
+        }
+
+        if (changed)
+        {
+            ApplyCurrentEffects();
         }
     }
 
@@ -254,42 +339,59 @@ public class JIN_ItemEffectApplier : MonoBehaviour
 
     private bool HasBrimstoneItem()
     {
-        return inventory != null && inventory.GetItemLevel(BrimstoneItemId) > 0;
+        return ResolveTestableItemState(hasTestBrimstoneOverride, testBrimstoneEnabled, BrimstoneItemId);
     }
 
     private bool HasGenericHomingItem()
     {
-        return inventory != null && inventory.GetItemLevel(GenericHomingItemId) > 0;
+        return ResolveTestableItemState(hasTestHomingAttackOverride, testHomingAttackEnabled, GenericHomingItemId);
     }
 
     private bool HasSplitAttackItem()
     {
-        return inventory != null && inventory.GetItemLevel(SplitAttackItemId) > 0;
+        return ResolveTestableItemState(hasTestSplitAttackOverride, testSplitAttackEnabled, SplitAttackItemId);
     }
 
     private int ResolveAttackCount()
     {
-        if (inventory == null)
-        {
-            return 1;
-        }
-
-        if (inventory.GetItemLevel(QuadShotItemId) > 0)
+        if (ResolveTestableItemState(hasTestQuadShotOverride, testQuadShotEnabled, QuadShotItemId))
         {
             return 4;
         }
 
-        if (inventory.GetItemLevel(TripleShotItemId) > 0)
+        if (ResolveTestableItemState(hasTestTripleShotOverride, testTripleShotEnabled, TripleShotItemId))
         {
             return 3;
         }
 
-        if (inventory.GetItemLevel(DoubleShotItemId) > 0)
+        if (ResolveTestableItemState(hasTestDoubleShotOverride, testDoubleShotEnabled, DoubleShotItemId))
         {
             return 2;
         }
 
         return 1;
+    }
+
+    private bool HasInventoryItem(string itemId)
+    {
+        return inventory != null && inventory.GetItemLevel(itemId) > 0;
+    }
+
+    private bool ResolveTestableItemState(bool hasOverride, bool testEnabled, string itemId)
+    {
+        return hasOverride ? testEnabled : HasInventoryItem(itemId);
+    }
+
+    private static void ToggleTestOverride(ref bool hasOverride, ref bool testEnabled, bool inventoryEnabled)
+    {
+        // 첫 테스트 입력은 현재 실제 보유 상태의 반대로 시작해 획득 아이템도 즉시 끌 수 있게 한다.
+        testEnabled = hasOverride ? !testEnabled : !inventoryEnabled;
+        hasOverride = true;
+    }
+
+    private static bool WasTestTogglePressed(KeyCode mainKey, KeyCode keypadKey)
+    {
+        return Input.GetKeyDown(mainKey) || Input.GetKeyDown(keypadKey);
     }
 
     private bool IsBrimstoneSetSynergyActive()

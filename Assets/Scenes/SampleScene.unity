@@ -743,6 +743,7 @@ GameObject:
   m_Component:
   - component: {fileID: 939199387}
   - component: {fileID: 939199388}
+  - component: {fileID: 939199389}
   m_Layer: 0
   m_Name: PrototypeArena
   m_TagString: Untagged
@@ -760,7 +761,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1487706924}
@@ -814,7 +815,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -10
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 7982d037745c43549923966cf8738965, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3b0e7a9d4c994a0498c3d6d28c4f5a11, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -824,6 +825,23 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &939199389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 939199386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91b8758203294d67bd422e302752f616, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::JIN_InfiniteMapBackground
+  mapSprite: {fileID: 21300000, guid: 3b0e7a9d4c994a0498c3d6d28c4f5a11, type: 3}
+  tileScale: 3
+  sortingOrder: -10
+  followTarget: {fileID: 1696152958}
+  originOffset: {x: 0, y: 0}
 --- !u!1 &1063657980
 GameObject:
   m_ObjectHideFlags: 0
@@ -849,7 +867,7 @@ Transform:
   m_GameObject: {fileID: 1063657980}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.55, y: 0, z: 0}
+  m_LocalPosition: {x: -0.55, y: 0.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1112,6 +1130,7 @@ GameObject:
   - component: {fileID: 1696152954}
   - component: {fileID: 1696152953}
   - component: {fileID: 1696152952}
+  - component: {fileID: 1696152959}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -1147,6 +1166,7 @@ MonoBehaviour:
   attackInterval: 0.35
   startCharged: 0
   firePoint: {fileID: 1063657981}
+  leftFacingFirePointOffset: {x: -0.55, y: 0.2}
   attackCount: 1
   multishotSpreadAngle: 30
   doubleShotSpacing: 0.35
@@ -1164,7 +1184,10 @@ MonoBehaviour:
   splitSpreadAngle: 70
   splitDamageMultiplier: 0.45
   splitSpeedMultiplier: 0.85
+  splitScaleMultiplier: 0.5
   splitProjectileLifetime: 1.2
+  brimstoneMouthForwardOffset: 0.4
+  brimstoneMouthVerticalOffset: -0.5
   laserLength: 12
   laserWidth: 1.5
   laserDuration: 2
@@ -1175,8 +1198,12 @@ MonoBehaviour:
   homingCurveStrength: 3
   homingCurveSamplesPerSegment: 6
   cameraFollow: {fileID: 0}
+  playerSpriteRenderer: {fileID: 1696152957}
+  playerController: {fileID: 1696152954}
   screenShakeDuration: 0.08
-  screenShakeStrength: 0.08
+  screenShakeStrength: 0.18
+  brimstoneSustainShakeDuration: 0.02
+  brimstoneSustainShakeStrength: 0.025
   autoTargeting: {fileID: 1696152953}
   playerHealth: {fileID: 1696152951}
   gameManager: {fileID: 1635233181}
@@ -1350,6 +1377,39 @@ Transform:
   - {fileID: 1063657981}
   m_Father: {fileID: 1487706924}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1696152959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1696152950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ccf1d633d8d4f6d9f0dd1f9d0f0b7b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::JIN_PlayerAttackSpriteAnimator
+  framesPerSecond: 10
+  normalAttackSprites:
+  - {fileID: 21300000, guid: 8f6c6fcc652e491aaf24a60d1c5d2652, type: 3}
+  - {fileID: 21300000, guid: e1e0a1d1c44141a2aa80ed99616cacc4, type: 3}
+  - {fileID: 21300000, guid: b2ae16c6166541ea89ac6df935f09db9, type: 3}
+  - {fileID: 21300000, guid: f953137a3dea4103b7f7cde43b5415ee, type: 3}
+  - {fileID: 21300000, guid: 8ff97245798c4340b3fb1e9ab2b136b1, type: 3}
+  - {fileID: 21300000, guid: 56086c3ecda8484e8d40095fad80e316, type: 3}
+  - {fileID: 21300000, guid: 567f2351e41ae824aa49e6e3fcd7a173, type: 3}
+  - {fileID: 21300000, guid: db927a0f4622ae54b8f84442474edb87, type: 3}
+  brimstoneAttackSprites:
+  - {fileID: 21300000, guid: f0a6767f2d6549bcaf50ee823ee8bff2, type: 3}
+  - {fileID: 21300000, guid: c90a1a21a6834b809af743cfc70f7dc1, type: 3}
+  - {fileID: 21300000, guid: 50686502c2f2425d9713fb0d835e32a4, type: 3}
+  - {fileID: 21300000, guid: 580a2a487a41426286822e8695a934ba, type: 3}
+  - {fileID: 21300000, guid: 673aadc80b454aa2bc7241d6c3e2a593, type: 3}
+  - {fileID: 21300000, guid: 7b2e1e22f7d8437aad5bd11ecf2a66db, type: 3}
+  - {fileID: 21300000, guid: d1bfca0f0f164482b52fcd442341d939, type: 3}
+  spriteRenderer: {fileID: 1696152957}
+  playerController: {fileID: 1696152954}
+  weaponController: {fileID: 1696152952}
 --- !u!1 &1799113652
 GameObject:
   m_ObjectHideFlags: 0
@@ -1399,6 +1459,15 @@ MonoBehaviour:
   spawnInterval: 1
   spawnCount: 2
   maxActiveEnemies: 45
+  spawnBosses: 1
+  bossPrefab: {fileID: 0}
+  bossSpawnInterval: 60
+  bossHealthMultiplier: 8
+  bossScaleMultiplier: 2.2
+  bossMoveSpeedMultiplier: 0.75
+  bossContactDamageMultiplier: 1.5
+  bossChestPrefab: {fileID: 0}
+  bossRewardChoiceCount: 3
   spawnArea: 1
   minSpawnDistance: 8
   maxSpawnDistance: 11

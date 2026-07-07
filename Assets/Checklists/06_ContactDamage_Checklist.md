@@ -6,6 +6,7 @@
 - [ ] 접촉 데미지가 Inspector에 노출된다.
 - [ ] 피해 적용 간격이 Inspector에 노출된다.
 - [ ] Player와 Enemy의 Collider2D가 접촉을 감지할 수 있게 설정되어 있다.
+- [x] Enemy Collider2D가 Collision 접촉에서도 Player 피해를 처리할 수 있게 유지되어 있다.
 - [ ] Player에 `Health`가 부착되어 있다.
 
 ## 동작 검증
@@ -16,6 +17,10 @@
 - [ ] 접촉이 끝난 뒤 다시 닿아도 피해 간격 규칙이 유지된다.
 - [ ] Enemy 사망 후 접촉 데미지가 적용되지 않는다.
 - [ ] Player 사망 후 추가 데미지가 적용되지 않는다.
+
+## 확인 메모
+
+- 2026-07-07: Enemy Collider2D를 non-trigger로 변경했으며, `ContactDamage`의 Collision 처리 경로로 접촉 피해를 유지한다.
 
 ## 통과 기준
 

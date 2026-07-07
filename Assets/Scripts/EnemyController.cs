@@ -7,9 +7,21 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class EnemyController : MonoBehaviour
 {
+    private const float DefaultWobbleAngle = 8f;
+    private const float DefaultWobbleFrequency = 6f;
+
     [Header("Movement")]
     [SerializeField, Min(0f)]
     private float moveSpeed = 2.5f;
+
+    [Header("Visual Wobble")]
+    [SerializeField, Min(0f)]
+    [Tooltip("이동 중 좌우로 흔들리듯 회전하는 최대 각도다.")]
+    private float wobbleAngle = DefaultWobbleAngle;
+
+    [SerializeField, Min(0f)]
+    [Tooltip("이동 중 좌우 흔들림이 반복되는 속도다.")]
+    private float wobbleFrequency = DefaultWobbleFrequency;
 
     [Header("State References")]
     [SerializeField]
@@ -19,6 +31,7 @@ public class EnemyController : MonoBehaviour
     private Health enemyHealth;
 
     private Rigidbody2D body;
+    private float wobblePhase;
 
     public float MoveSpeed
     {
@@ -43,6 +56,7 @@ public class EnemyController : MonoBehaviour
     private void Awake()
     {
         body = GetComponent<Rigidbody2D>();
+        wobblePhase = Random.Range(0f, Mathf.PI * 2f);
         ConfigureBodyForTopDownMovement();
         ResolveOptionalReferences();
     }
@@ -63,6 +77,8 @@ public class EnemyController : MonoBehaviour
     private void OnValidate()
     {
         moveSpeed = Mathf.Max(0f, moveSpeed);
+        wobbleAngle = Mathf.Max(0f, wobbleAngle);
+        wobbleFrequency = Mathf.Max(0f, wobbleFrequency);
     }
 
     private void FixedUpdate()
@@ -75,6 +91,17 @@ public class EnemyController : MonoBehaviour
         }
 
         MoveTowardTarget();
+    }
+
+    private void LateUpdate()
+    {
+        if (ShouldStopMovement() || body.linearVelocity.sqrMagnitude <= Mathf.Epsilon)
+        {
+            ResetVisualWobble();
+            return;
+        }
+
+        UpdateVisualWobble();
     }
 
     private void OnDisable()
@@ -153,6 +180,24 @@ public class EnemyController : MonoBehaviour
 
         // Recalculate direction every physics tick so the enemy follows moving targets.
         body.linearVelocity = toTarget.normalized * moveSpeed;
+    }
+
+    private void UpdateVisualWobble()
+    {
+        if (wobbleAngle <= 0f || wobbleFrequency <= 0f)
+        {
+            ResetVisualWobble();
+            return;
+        }
+
+        // 물리 이동은 그대로 두고, 적 스프라이트가 좌우로 비틀리며 다가오는 느낌만 더한다.
+        float zRotation = Mathf.Sin((Time.time * wobbleFrequency) + wobblePhase) * wobbleAngle;
+        transform.rotation = Quaternion.Euler(0f, 0f, zRotation);
+    }
+
+    private void ResetVisualWobble()
+    {
+        transform.rotation = Quaternion.identity;
     }
 
     private void StopMovement()

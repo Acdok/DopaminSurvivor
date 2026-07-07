@@ -66,7 +66,6 @@ public class JIN_BrimstoneLaser : MonoBehaviour
     private readonly List<Health> homingTargets = new List<Health>();
     private readonly List<Vector3> anchors = new List<Vector3>();
     private readonly List<Vector3> renderPoints = new List<Vector3>();
-    private readonly List<Health> splitSpawnedTargets = new List<Health>();
 
     private LineRenderer lineRenderer;
     private GameObject owner;
@@ -100,6 +99,7 @@ public class JIN_BrimstoneLaser : MonoBehaviour
     private float splitScaleMultiplier;
     private Health ignoredTarget;
     private float elapsed;
+    private bool hasSpawnedSplitAttack;
 
     public void Initialize(Configuration configuration)
     {
@@ -136,7 +136,7 @@ public class JIN_BrimstoneLaser : MonoBehaviour
         splitHomingRadius = SanitizeNonNegativeWithFallback(configuration.SplitHomingRadius, DefaultSplitHomingRadius);
         splitScaleMultiplier = SanitizePositiveWithFallback(configuration.SplitScaleMultiplier, DefaultSplitScaleMultiplier);
         ignoredTarget = configuration.IgnoredTarget;
-        splitSpawnedTargets.Clear();
+        hasSpawnedSplitAttack = false;
         elapsed = 0f;
 
         EnsureLineRenderer();
@@ -623,20 +623,20 @@ public class JIN_BrimstoneLaser : MonoBehaviour
             || hitTarget == null
             || splitDamage <= 0f
             || splitLength <= 0f
-            || splitSpawnedTargets.Contains(hitTarget))
+            || hasSpawnedSplitAttack)
         {
             return;
         }
 
-        splitSpawnedTargets.Add(hitTarget);
-        Vector2 baseDirection = ResolvePathDirectionNearPoint(hitTarget.transform.position);
-        Vector3 splitOrigin = hitTarget.transform.position;
+        hasSpawnedSplitAttack = true;
+        Vector3 hitPoint = ResolveClosestPointOnLaserPath(hitTarget.transform.position);
+        Vector2 baseDirection = ResolvePathDirectionNearPoint(hitPoint);
 
         for (int i = 0; i < splitProjectileCount; i++)
         {
             Vector2 splitDirection = ResolveSplitDirection(baseDirection, i, splitProjectileCount);
             Quaternion rotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(splitDirection.y, splitDirection.x) * Mathf.Rad2Deg);
-            Vector3 spawnPosition = splitOrigin + (Vector3)(splitDirection * 0.18f);
+            Vector3 spawnPosition = hitPoint + (Vector3)(splitDirection * 0.18f);
             SpawnSplitLaser(spawnPosition, rotation, splitDirection, hitTarget);
         }
     }
@@ -711,6 +711,30 @@ public class JIN_BrimstoneLaser : MonoBehaviour
         }
 
         return fallbackDirection;
+    }
+
+    private Vector3 ResolveClosestPointOnLaserPath(Vector3 point)
+    {
+        Vector3 closestPoint = point;
+        float nearestSqrDistance = float.PositiveInfinity;
+
+        for (int i = 0; i < renderPoints.Count - 1; i++)
+        {
+            Vector2 from = renderPoints[i];
+            Vector2 to = renderPoints[i + 1];
+            Vector2 candidate = ClosestPointOnSegment(point, from, to);
+            float sqrDistance = ((Vector2)point - candidate).sqrMagnitude;
+
+            if (sqrDistance >= nearestSqrDistance)
+            {
+                continue;
+            }
+
+            nearestSqrDistance = sqrDistance;
+            closestPoint = new Vector3(candidate.x, candidate.y, point.z);
+        }
+
+        return closestPoint;
     }
 
     private Vector2 ResolveSplitDirection(Vector2 baseDirection, int index, int count)
@@ -862,18 +886,23 @@ public class JIN_BrimstoneLaser : MonoBehaviour
 
     private static float DistanceToSegmentSqr(Vector2 point, Vector2 from, Vector2 to)
     {
+        Vector2 closestPoint = ClosestPointOnSegment(point, from, to);
+        return (point - closestPoint).sqrMagnitude;
+    }
+
+    private static Vector2 ClosestPointOnSegment(Vector2 point, Vector2 from, Vector2 to)
+    {
         Vector2 segment = to - from;
         float segmentLengthSqr = segment.sqrMagnitude;
 
         if (segmentLengthSqr <= Mathf.Epsilon)
         {
-            return (point - from).sqrMagnitude;
+            return from;
         }
 
         float t = Vector2.Dot(point - from, segment) / segmentLengthSqr;
         t = Mathf.Clamp01(t);
-        Vector2 closestPoint = from + segment * t;
-        return (point - closestPoint).sqrMagnitude;
+        return from + segment * t;
     }
 
     private static bool MatchesObjectOrChild(GameObject candidate, GameObject root)
